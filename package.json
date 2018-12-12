@@ -1,0 +1,23 @@
+{
+  "name": "fitness_app",
+  "version": "1.0.0",
+  "description": "A team based fitness app that allows users to encourage teammates",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melissa3000/FitnessApp.git"
+  },
+  "author": "melissa3000",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/melissa3000/FitnessApp/issues"
+  },
+  "homepage": "https://github.com/melissa3000/FitnessApp#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

@@ -1,0 +1,115 @@
+
+Source:
+https://medium.com/@maison.moa/setting-up-an-express-backend-server-for-create-react-app-bc7620b20a61
+
+=============================================================================
+Setup:
+=============================================================================
+
+Quick start server creation:
+From project folder run:
+npx create-react-app client
+
+run:
+(create package.json)
+npm init
+(install express and save it as a dependency in package.json)
+npm install express --save
+
+
+
+Create server.js with the following:
+=============================================================================
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 5000;
+
+// console.log that your server is up and running
+app.listen(port, () => console.log(`Listening on port ${port}`));
+
+// create a GET route
+app.get('/express_backend', (req, res) => {
+  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+});
+
+=============================================================================
+
+inside the package.json file, add proxy info to let Webpack know to proxy our API requests to our Express backend that will be running on port 5000:
+"proxy": "http://localhost:5000/"
+
+=============================================================================
+
+modify client/src/App.js to reflect the following:
+
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+class App extends Component {
+state = {
+    data: null
+  };
+
+  componentDidMount() {
+      // Call our fetch function below once the component mounts
+    this.callBackendAPI()
+      .then(res => this.setState({ data: res.express }))
+      .catch(err => console.log(err));
+  }
+    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+  callBackendAPI = async () => {
+    const response = await fetch('/express_backend');
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body;
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        // Render the newly fetched data inside of this.state.data
+        <p className="App-intro">{this.state.data}</p>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+
+=============================================================================
+To run server:
+=============================================================================
+Navigate to root directory and run:
+node server.js
+
+from http://localhost:5000/express_backend
+you should see:
+{“express”:”YOUR EXPRESS BACKEND IS CONNECTED TO REACT”}
+This shows you the backend is up and running
+
+
+Navigate to the client folder and run:
+npm start
+
+from localhost:3000 you should see application running
+
+
+
+
+
+
+
+
+
+
+
+
