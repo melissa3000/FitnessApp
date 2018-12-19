@@ -1,11 +1,11 @@
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import AppBar from 'material-ui/AppBar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
 import React, { Component } from 'react';
 // import RaisedButton from 'material-ui/RaisedButton';
-// import TextField from 'material-ui/TextField';
+import TextField from 'material-ui/TextField';
 import axios from 'axios';
 // import UploadScreen from './UploadScreen';
-
+import Button from '@material-ui/core/Button';
 
 class Login extends Component {
 	constructor(props) {
@@ -18,17 +18,18 @@ class Login extends Component {
 	render() {
 		return (
 			<div>
-
+				<MuiThemeProvider>
 					<div>
+					<AppBar title="Login"/>
 
-						<input type="text"
+						<TextField
 						hintText="Enter your username"
 						floatingLabelText="Username"
 						onChange = {(event, newValue) =>
 						this.setState({username:newValue})}
 						/>
 						<br/>
-						<input
+						<TextField
 						type="password"
 						hintText="Enter your password"
 						floatingLabelText="Password"
@@ -36,10 +37,11 @@ class Login extends Component {
 						this.setState({password:newValue})}
 						/>
 						<br/>
-						<button label="Submit" primary={true} style={style}
-						onClick={(event) => this.handleClick(event)}/>
+						<Button variant="contained" label="Submit" color="primary" primary={true} style={style} onClick={(event) => this.handleClick(event)}>
+							Submit
+						</Button>
 					</div>
-
+				</MuiThemeProvider>
 			</div>
 		);
 	}
