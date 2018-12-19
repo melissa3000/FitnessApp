@@ -1,47 +1,38 @@
-/*jshint esversion: 6 */
-
-
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import injectTapEventPlugin from 'react-tap-event-plugin';
 import './App.css';
+import Loginscreen from './Loginscreen'
+// injectTapEventPlugin();
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 class App extends Component {
-state = {
-    data: null
-  };
-
-
-
-  componentDidMount() {
-      // Call our fetch function below once the component mounts
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
-    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message)
+  constructor(props) {
+    super(props);
+    this.state={
+      loginPage: [],
+      uploadScreen: []
     }
-    return body;
-  };
+  }
+  componentWillMount() {
+    let loginPage = [];
+    loginPage.push(<Loginscreen parentContext={this}/>);
+    this.setState({ loginPage:loginPage })
+  }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        // Render the newly fetched data inside of this.state.data
-        <p className="App-intro">{this.state.data}</p>
+        {this.state.loginPage}
+        // {this.state.uploadScreen}
       </div>
     );
   }
 }
+
+const style = {
+  margin: 15,
+};
 
 export default App;
 

@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/melissa3000/FitnessApp#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "material-ui": "^0.20.2",
+    "react-router-dom": "^4.3.1",
+    "react-tap-event-plugin": "^3.0.3"
   }
 }
